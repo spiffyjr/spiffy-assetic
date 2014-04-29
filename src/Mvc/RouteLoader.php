@@ -1,6 +1,6 @@
 <?php
 
-namespace SpiffyAssetic;
+namespace Spiffy\Assetic;
 
 use Assetic\Asset\AssetInterface;
 use Zend\EventManager\AbstractListenerAggregate;
@@ -29,15 +29,15 @@ class RouteLoader extends AbstractListenerAggregate
         $app = $e->getApplication();
         $services = $app->getServiceManager();
 
-        /** @var \SpiffyAssetic\ModuleOptions $options */
-        $options = $services->get('SpiffyAssetic\ModuleOptions');
+        /** @var \Spiffy\Assetic\ModuleOptions $options */
+        $options = $services->get('Spiffy\Assetic\ModuleOptions');
 
         if (!$options->getAutoload()) {
             return;
         }
 
-        /** @var \SpiffyAssetic\AsseticService $asseticService */
-        $asseticService = $i->nvoke('SpiffyAssetic\AsseticService');
+        /** @var \Spiffy\Assetic\AsseticService $asseticService */
+        $asseticService = $i->nvoke('Spiffy\Assetic\AsseticService');
         $asseticService->load();
 
         $am = $asseticService->getAssetManager();

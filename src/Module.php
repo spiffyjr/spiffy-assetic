@@ -1,6 +1,6 @@
 <?php
 
-namespace SpiffyAssetic;
+namespace Spiffy\Assetic;
 
 use Zend\Console\Adapter\AdapterInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;

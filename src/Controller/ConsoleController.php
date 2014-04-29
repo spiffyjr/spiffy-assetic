@@ -1,11 +1,11 @@
 <?php
 
-namespace SpiffyAssetic\Controller;
+namespace Spiffy\Assetic\Controller;
 
 use Assetic\Asset\AssetCollectionInterface;
 use Assetic\Asset\AssetInterface;
 use Assetic\Util\VarUtils;
-use SpiffyAssetic\AsseticService;
+use Spiffy\Assetic\AsseticService;
 use Zend\Console\Adapter\AdapterInterface;
 use Zend\Console\ColorInterface;
 use Zend\Mvc\Controller\AbstractActionController;
@@ -48,8 +48,8 @@ class ConsoleController extends AbstractActionController
         $console = $this->getServiceLocator()->get('console');
         $am = $this->getAssetManager();
 
-        /** @var \SpiffyAssetic\ModuleOptions $options */
-        $options = $services->get('SpiffyAssetic\ModuleOptions');
+        /** @var \Spiffy\Assetic\ModuleOptions $options */
+        $options = $services->get('Spiffy\Assetic\ModuleOptions');
 
         // print the header
         $console->writeLine(sprintf('Dumping all assets.'));
@@ -115,8 +115,8 @@ class ConsoleController extends AbstractActionController
         $asset = $am->get($name);
         $services = $this->getServiceLocator();
 
-        /** @var \SpiffyAssetic\ModuleOptions $options */
-        $options = $services->get('SpiffyAssetic\ModuleOptions');
+        /** @var \Spiffy\Assetic\ModuleOptions $options */
+        $options = $services->get('Spiffy\Assetic\ModuleOptions');
 
         $combinations = VarUtils::getCombinations(
             $asset->getVars(),
@@ -174,8 +174,8 @@ class ConsoleController extends AbstractActionController
         $verbose = $request->getParam('verbose');
         $services = $this->getServiceLocator();
 
-        /** @var \SpiffyAssetic\ModuleOptions $options */
-        $options = $services->get('SpiffyAssetic\ModuleOptions');
+        /** @var \Spiffy\Assetic\ModuleOptions $options */
+        $options = $services->get('Spiffy\Assetic\ModuleOptions');
 
         $combinations = VarUtils::getCombinations(
             $asset->getVars(),

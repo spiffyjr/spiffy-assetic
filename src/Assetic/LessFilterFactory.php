@@ -1,6 +1,6 @@
 <?php
 
-namespace SpiffyAssetic\Assetic;
+namespace Spiffy\Assetic\Assetic;
 
 use Assetic\Filter\LessFilter;
 use Zend\ServiceManager\FactoryInterface;

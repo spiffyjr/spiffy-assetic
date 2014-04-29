@@ -1,6 +1,6 @@
 <?php
 
-namespace SpiffyAssetic;
+namespace Spiffy\Assetic;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -14,7 +14,7 @@ class RouteLoaderFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $services)
     {
         return new RouteLoader(
-            $services->get('SpiffyAssetic\AsseticService'),
+            $services->get('Spiffy\Assetic\AsseticService'),
             $services->get('router')
         );
     }

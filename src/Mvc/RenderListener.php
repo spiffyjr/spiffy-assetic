@@ -1,6 +1,6 @@
 <?php
 
-namespace SpiffyAssetic\Mvc;
+namespace Spiffy\Assetic\Mvc;
 
 use Zend\EventManager\AbstractListenerAggregate;
 use Zend\EventManager\EventManagerInterface;
@@ -27,6 +27,6 @@ class RenderListener extends AbstractListenerAggregate
     {
         $app = $e->getApplication();
         $services = $app->getServiceManager();
-        $services->get('SpiffyAssetic\AsseticService')->load();
+        $services->get('Spiffy\Assetic\AsseticService')->load();
     }
 }

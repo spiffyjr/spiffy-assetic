@@ -1,6 +1,6 @@
 <?php
 
-namespace SpiffyAssetic\Plugin;
+namespace Spiffy\Assetic\Plugin;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -13,8 +13,8 @@ class AssetLoaderPluginFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $services)
     {
-        /** @var \SpiffyAssetic\ModuleOptions $options */
-        $options = $services->get('SpiffyAssetic\ModuleOptions');
+        /** @var \Spiffy\Assetic\ModuleOptions $options */
+        $options = $services->get('Spiffy\Assetic\ModuleOptions');
 
         return new AssetLoaderPlugin($options->getAssets());
     }

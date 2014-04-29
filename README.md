@@ -1,4 +1,4 @@
-# SpiffyAssetic
+# Spiffy\Assetic
 
 [![Build Status](https://travis-ci.org/spiffyjr/spiffy-asset-package.svg)](https://travis-ci.org/spiffyjr/spiffy-asset-package)
 [![Code Coverage](https://scrutinizer-ci.com/g/spiffyjr/spiffy-asset-package/badges/coverage.png?s=3f606f26f25597e7e41b36a35f23810754f8e34d)](https://scrutinizer-ci.com/g/spiffyjr/spiffy-asset-package/)
@@ -6,7 +6,7 @@
 
 ## Installation
 
-SpiffyAssetic can be installed using composer which will setup any autoloading for you.
+Spiffy\Assetic can be installed using composer which will setup any autoloading for you.
 
 `composer require spiffy/spiffy-asset-package`
 

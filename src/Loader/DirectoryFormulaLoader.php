@@ -1,10 +1,10 @@
 <?php
 
-namespace SpiffyAssetic\Loader;
+namespace Spiffy\Assetic\Loader;
 
 use Assetic\Factory\Loader\FormulaLoaderInterface;
 use Assetic\Factory\Resource\ResourceInterface;
-use SpiffyAssetic\Assetic\AssetFactory;
+use Spiffy\Assetic\Assetic\AssetFactory;
 use Symfony\Component\Finder\Finder;
 
 class DirectoryFormulaLoader implements FormulaLoaderInterface

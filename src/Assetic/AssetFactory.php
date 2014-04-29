@@ -1,6 +1,6 @@
 <?php
 
-namespace SpiffyAssetic\Assetic;
+namespace Spiffy\Assetic\Assetic;
 
 use Assetic\Factory\AssetFactory as BaseAssetFactory;
 use Zend\ModuleManager\ModuleManager;

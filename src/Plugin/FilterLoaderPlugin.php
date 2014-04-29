@@ -1,8 +1,8 @@
 <?php
 
-namespace SpiffyAssetic\Plugin;
+namespace Spiffy\Assetic\Plugin;
 
-use SpiffyAssetic\AsseticService;
+use Spiffy\Assetic\AsseticService;
 use Zend\EventManager\AbstractListenerAggregate;
 use Zend\EventManager\EventInterface;
 use Zend\EventManager\EventManagerInterface;
@@ -34,7 +34,7 @@ class FilterLoaderPlugin extends AbstractListenerAggregate
             return;
         }
 
-        /** @var \SpiffyAssetic\AsseticService $service */
+        /** @var \Spiffy\Assetic\AsseticService $service */
         $service = $e->getTarget();
         $manager = $service->getFilterManager();
 

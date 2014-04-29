@@ -1,14 +1,14 @@
 <?php
 
-namespace SpiffyAssetic\Plugin;
+namespace Spiffy\Assetic\Plugin;
 
 use Assetic\Cache\ConfigCache;
 use Assetic\Factory\LazyAssetManager;
 use Assetic\Factory\Loader\CachedFormulaLoader;
-use SpiffyAssetic\Assetic\AssetFactory;
-use SpiffyAssetic\AsseticService;
-use SpiffyAssetic\Loader\DirectoryFormulaLoader;
-use SpiffyAssetic\Loader\RecursiveDirectoryResource;
+use Spiffy\Assetic\Assetic\AssetFactory;
+use Spiffy\Assetic\AsseticService;
+use Spiffy\Assetic\Loader\DirectoryFormulaLoader;
+use Spiffy\Assetic\Loader\RecursiveDirectoryResource;
 use Zend\EventManager\AbstractListenerAggregate;
 use Zend\EventManager\EventInterface;
 use Zend\EventManager\EventManagerInterface;
@@ -26,7 +26,7 @@ class DirectoryLoaderPlugin extends AbstractListenerAggregate
     protected $directories;
 
     /**
-     * @param \SpiffyAssetic\Assetic\AssetFactory $factory
+     * @param \Spiffy\Assetic\Assetic\AssetFactory $factory
      * @param array $directories
      */
     public function __construct(AssetFactory $factory, array $directories)
@@ -48,7 +48,7 @@ class DirectoryLoaderPlugin extends AbstractListenerAggregate
      */
     public function onLoad(EventInterface $e)
     {
-        /** @var \SpiffyAssetic\AsseticService $service */
+        /** @var \Spiffy\Assetic\AsseticService $service */
         $service = $e->getTarget();
         $am = $service->getAssetManager();
 

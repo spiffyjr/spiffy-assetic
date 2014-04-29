@@ -1,6 +1,6 @@
 <?php
 
-namespace SpiffyAssetic\Assetic;
+namespace Spiffy\Assetic\Assetic;
 
 use Assetic\Factory\LazyAssetManager;
 use Assetic\FilterManager;
@@ -18,8 +18,8 @@ class AssetFactoryFactory implements FactoryInterface
         /** @var \Zend\ModuleManager\ModuleManager $pm */
         $moduleManager = $services->get('ModuleManager');
 
-        /** @var \SpiffyAssetic\ModuleOptions $options */
-        $options = $services->get('SpiffyAssetic\ModuleOptions');
+        /** @var \Spiffy\Assetic\ModuleOptions $options */
+        $options = $services->get('Spiffy\Assetic\ModuleOptions');
 
         $factory = new AssetFactory($moduleManager, $options->getRootDir(), $options->getDebug());
         $assetManager = new LazyAssetManager($factory);

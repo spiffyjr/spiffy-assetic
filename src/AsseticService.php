@@ -1,6 +1,6 @@
 <?php
 
-namespace SpiffyAssetic;
+namespace Spiffy\Assetic;
 
 use Assetic\AssetWriter;
 use Zend\EventManager\EventManagerAwareTrait;

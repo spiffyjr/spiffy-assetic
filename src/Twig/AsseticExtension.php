@@ -1,6 +1,6 @@
 <?php
 
-namespace SpiffyAssetic\Twig;
+namespace Spiffy\Assetic\Twig;
 
 use Assetic\Extension\Twig\AsseticExtension as BaseAsseticExtension;
 use Assetic\Extension\Twig\AsseticTokenParser;

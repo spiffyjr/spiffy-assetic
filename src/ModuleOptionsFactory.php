@@ -1,6 +1,6 @@
 <?php
 
-namespace SpiffyAssetic;
+namespace Spiffy\Assetic;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;

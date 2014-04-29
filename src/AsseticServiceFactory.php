@@ -1,6 +1,6 @@
 <?php
 
-namespace SpiffyAssetic;
+namespace Spiffy\Assetic;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -13,8 +13,8 @@ class AsseticServiceFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $services)
     {
-        /** @var \SpiffyAssetic\ModuleOptions $options */
-        $options = $services->get('SpiffyAssetic\ModuleOptions');
+        /** @var \Spiffy\Assetic\ModuleOptions $options */
+        $options = $services->get('Spiffy\Assetic\ModuleOptions');
         $factory = $services->get('Assetic\Factory\AssetFactory');
 
         $service = new AsseticService($factory, $services->get('Assetic\AssetWriter'));

@@ -1,8 +1,8 @@
 <?php
 
-namespace SpiffyAssetic\Controller;
+namespace Spiffy\Assetic\Controller;
 
-use SpiffyAssetic\AsseticService;
+use Spiffy\Assetic\AsseticService;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -17,11 +17,11 @@ class ConsoleControllerFactory implements FactoryInterface
         /** @var \Zend\Mvc\Controller\ControllerManager $controllerManager */
         $services = $controllerManager->getServiceLocator();
 
-        /** @var \SpiffyAssetic\AsseticService $asseticService */
-        $asseticService = $services->get('SpiffyAssetic\AsseticService');
+        /** @var \Spiffy\Assetic\AsseticService $asseticService */
+        $asseticService = $services->get('Spiffy\Assetic\AsseticService');
 
-        /** @var \SpiffyAssetic\ModuleOptions $options */
-        $options = $services->get('SpiffyAssetic\ModuleOptions');
+        /** @var \Spiffy\Assetic\ModuleOptions $options */
+        $options = $services->get('Spiffy\Assetic\ModuleOptions');
 
         $this->injectPlugins($services, $asseticService, $options->getConsolePlugins());
 

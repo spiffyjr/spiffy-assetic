@@ -1,6 +1,6 @@
 <?php
 
-namespace SpiffyAssetic\Controller;
+namespace Spiffy\Assetic\Controller;
 
 use Zend\Http\PhpEnvironment\Response;
 use Zend\Mvc\Controller\AbstractActionController;
@@ -13,8 +13,8 @@ class AssetController extends AbstractActionController
         $params = $match->getParams();
         $services = $this->getServiceLocator();
 
-        /** @var \SpiffyAssetic\AsseticService $asseticService */
-        $asseticService = $services->get('SpiffyAssetic\AsseticService');
+        /** @var \Spiffy\Assetic\AsseticService $asseticService */
+        $asseticService = $services->get('Spiffy\Assetic\AsseticService');
         $asseticService->load();
 
         $am = $asseticService->getAssetManager();

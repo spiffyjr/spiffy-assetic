@@ -8,7 +8,7 @@ return [
                     'options' => [
                         'route' => 'assetic dump [--verbose|-v]',
                         'defaults' => [
-                            'controller' => 'SpiffyAssetic\Controller\ConsoleController',
+                            'controller' => 'Spiffy\Assetic\Controller\ConsoleController',
                             'action' => 'dump'
                         ]
                     ]
@@ -17,7 +17,7 @@ return [
                     'options' => [
                         'route' => 'assetic watch [--force|-f] [--verbose|-v] [--period=]',
                         'defaults' => [
-                            'controller' => 'SpiffyAssetic\Controller\ConsoleController',
+                            'controller' => 'Spiffy\Assetic\Controller\ConsoleController',
                             'action' => 'watch',
                             'period' => 1
                         ]
@@ -28,42 +28,42 @@ return [
     ],
     'controllers' => [
         'invokables' => [
-            'SpiffyAssetic\Controller\AssetController' => 'SpiffyAssetic\Controller\AssetController',
+            'Spiffy\Assetic\Controller\AssetController' => 'Spiffy\Assetic\Controller\AssetController',
         ],
         'factories' => [
-            'SpiffyAssetic\Controller\ConsoleController' => 'SpiffyAssetic\Controller\ConsoleControllerFactory',
+            'Spiffy\Assetic\Controller\ConsoleController' => 'Spiffy\Assetic\Controller\ConsoleControllerFactory',
         ]
     ],
     'listeners' => [
         // todo: implement
-        //'SpiffyAssetic\Mvc\RouteLoader',
-        'SpiffyAssetic\Mvc\RenderListener',
+        //'Spiffy\Assetic\Mvc\RouteLoader',
+        'Spiffy\Assetic\Mvc\RenderListener',
     ],
     'service_manager' => [
         'invokables' => [
             // mvc listener
-            'SpiffyAssetic\Mvc\RenderListener' => 'SpiffyAssetic\Mvc\RenderListener',
+            'Spiffy\Assetic\Mvc\RenderListener' => 'Spiffy\Assetic\Mvc\RenderListener',
         ],
         'factories' => [
             // assetic
-            'Assetic\AssetWriter' => 'SpiffyAssetic\Assetic\AssetWriterFactory',
-            'Assetic\Extension\Twig\AsseticExtension' => 'SpiffyAssetic\Twig\AsseticExtensionFactory',
-            'Assetic\Factory\AssetFactory' => 'SpiffyAssetic\Assetic\AssetFactoryFactory',
+            'Assetic\AssetWriter' => 'Spiffy\Assetic\Assetic\AssetWriterFactory',
+            'Assetic\Extension\Twig\AsseticExtension' => 'Spiffy\Assetic\Twig\AsseticExtensionFactory',
+            'Assetic\Factory\AssetFactory' => 'Spiffy\Assetic\Assetic\AssetFactoryFactory',
 
             // assetic filters
-            'Assetic\Filter\LessFilter' => 'SpiffyAssetic\Assetic\LessFilterFactory',
+            'Assetic\Filter\LessFilter' => 'Spiffy\Assetic\Assetic\LessFilterFactory',
 
             // mvc listeners
-            'SpiffyAssetic\Mvc\RouteLoader' => 'SpiffyAssetic\Mvc\RouteLoaderFactory',
+            'Spiffy\Assetic\Mvc\RouteLoader' => 'Spiffy\Assetic\Mvc\RouteLoaderFactory',
 
             // plugins
-            'SpiffyAssetic\Plugin\AssetLoaderPlugin' => 'SpiffyAssetic\Plugin\AssetLoaderPluginFactory',
-            'SpiffyAssetic\Plugin\DirectoryLoaderPlugin' => 'SpiffyAssetic\Plugin\DirectoryLoaderPluginFactory',
-            'SpiffyAssetic\Plugin\FilterLoaderPlugin' => 'SpiffyAssetic\Plugin\FilterLoaderPluginFactory',
-            'SpiffyAssetic\Plugin\TwigLoaderPlugin' => 'SpiffyAssetic\Plugin\TwigLoaderPluginFactory',
+            'Spiffy\Assetic\Plugin\AssetLoaderPlugin' => 'Spiffy\Assetic\Plugin\AssetLoaderPluginFactory',
+            'Spiffy\Assetic\Plugin\DirectoryLoaderPlugin' => 'Spiffy\Assetic\Plugin\DirectoryLoaderPluginFactory',
+            'Spiffy\Assetic\Plugin\FilterLoaderPlugin' => 'Spiffy\Assetic\Plugin\FilterLoaderPluginFactory',
+            'Spiffy\Assetic\Plugin\TwigLoaderPlugin' => 'Spiffy\Assetic\Plugin\TwigLoaderPluginFactory',
 
-            'SpiffyAssetic\AsseticService' => 'SpiffyAssetic\AsseticServiceFactory',
-            'SpiffyAssetic\ModuleOptions' => 'SpiffyAssetic\ModuleOptionsFactory',
+            'Spiffy\Assetic\AsseticService' => 'Spiffy\Assetic\AsseticServiceFactory',
+            'Spiffy\Assetic\ModuleOptions' => 'Spiffy\Assetic\ModuleOptionsFactory',
         ]
     ],
     'spiffy-assetic' => [
@@ -86,11 +86,11 @@ return [
         ],
         'variables' => [],
         'console_plugins' => [
-            'SpiffyAssetic\Plugin\DirectoryLoaderPlugin',
+            'Spiffy\Assetic\Plugin\DirectoryLoaderPlugin',
         ],
         'plugins' => [
-            'SpiffyAssetic\Plugin\AssetLoaderPlugin',
-            'SpiffyAssetic\Plugin\FilterLoaderPlugin',
+            'Spiffy\Assetic\Plugin\AssetLoaderPlugin',
+            'Spiffy\Assetic\Plugin\FilterLoaderPlugin',
         ]
     ],
     'zfctwig' => [

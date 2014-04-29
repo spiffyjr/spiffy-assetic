@@ -1,13 +1,13 @@
 <?php
 
-namespace SpiffyAssetic\Plugin;
+namespace Spiffy\Assetic\Plugin;
 
 use Assetic\Cache\ConfigCache;
 use Assetic\Extension\Twig\TwigFormulaLoader;
 use Assetic\Extension\Twig\TwigResource;
 use Assetic\Factory\LazyAssetManager;
 use Assetic\Factory\Loader\CachedFormulaLoader;
-use SpiffyAssetic\AsseticService;
+use Spiffy\Assetic\AsseticService;
 use Symfony\Component\Finder\Finder;
 use Zend\EventManager\AbstractListenerAggregate;
 use Zend\EventManager\EventInterface;
@@ -51,7 +51,7 @@ class TwigLoaderPlugin extends AbstractListenerAggregate
         $loaders->setAccessible(true);
         $loaders = $loaders->getValue($chain);
 
-        /** @var \SpiffyAssetic\AsseticService $service */
+        /** @var \Spiffy\Assetic\AsseticService $service */
         $service = $e->getTarget();
         $am = $service->getAssetManager();
 
