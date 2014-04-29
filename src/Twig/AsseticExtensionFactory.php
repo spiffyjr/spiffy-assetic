@@ -2,6 +2,7 @@
 
 namespace Spiffy\Assetic\Twig;
 
+use Assetic\Extension\Twig\AsseticExtension;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 

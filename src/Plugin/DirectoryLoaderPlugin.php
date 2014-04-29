@@ -67,6 +67,9 @@ class DirectoryLoaderPlugin extends AbstractListenerAggregate
             $am->setLoader($formulaName, $formulaLoader);
 
             foreach ($spec as $directory) {
+                if (empty($directory)) {
+                    continue;
+                }
                 $am->addResource(new RecursiveDirectoryResource(
                     $this->factory->convertModuleInput($directory[0]),
                     isset($directory[1]) ? $directory[1] : '*'

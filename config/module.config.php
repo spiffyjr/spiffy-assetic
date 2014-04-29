@@ -91,7 +91,7 @@ return [
         'plugins' => [
             'Spiffy\Assetic\Plugin\AssetLoaderPlugin',
             'Spiffy\Assetic\Plugin\FilterLoaderPlugin',
-        ]
+        ],
     ],
     'zfctwig' => [
         'extensions' => [
