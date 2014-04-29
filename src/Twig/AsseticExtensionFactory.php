@@ -2,7 +2,6 @@
 
 namespace Spiffy\Assetic\Twig;
 
-use Assetic\Extension\Twig\AsseticExtension;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -18,6 +17,9 @@ class AsseticExtensionFactory implements FactoryInterface
         $service = $services->get('Spiffy\Assetic\AsseticService');
         $factory = $service->getAssetFactory();
 
-        return new AsseticExtension($factory);
+        /** @var \Spiffy\Assetic\ModuleOptions $options */
+        $options = $services->get('Spiffy\Assetic\ModuleOptions');
+
+        return new AsseticExtension($factory, $options->getParsers());
     }
 }

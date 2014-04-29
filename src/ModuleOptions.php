@@ -49,6 +49,11 @@ class ModuleOptions extends AbstractOptions
     /**
      * @var array
      */
+    protected $parsers = [];
+
+    /**
+     * @var array
+     */
     protected $variables = [];
 
     /**
@@ -235,5 +240,21 @@ class ModuleOptions extends AbstractOptions
     public function getConsolePlugins()
     {
         return $this->consolePlugins;
+    }
+
+    /**
+     * @param array $parsers
+     */
+    public function setParsers($parsers)
+    {
+        $this->parsers = $parsers;
+    }
+
+    /**
+     * @return array
+     */
+    public function getParsers()
+    {
+        return $this->parsers;
     }
 }
