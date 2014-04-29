@@ -1,5 +1,5 @@
 {
-    "name": "spiffy/spiffy-assetic-package",
+    "name": "spiffy/spiffy-assetic",
     "authors": [
         {
             "name": "Kyle Spraggs",
@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Spiffy\\AsseticPackage\\": [
+            "Spiffy\\Assetic\\": [
                 "src/",
                 "test/"
             ]
