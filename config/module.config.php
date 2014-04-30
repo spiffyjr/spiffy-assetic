@@ -74,7 +74,7 @@ return [
         'assets' => [],
         'filters' => [
             'cssmin' => 'Assetic\Filter\CssMinFilter',
-            'jsmin' => 'Assetic\Filter\JsMinFilter',
+            'jsmin' => 'Assetic\Filter\JSMinFilter',
             'less' => 'Assetic\Filter\LessFilter',
         ],
         'filter_options' => [
