@@ -28,7 +28,6 @@ class AssetFactory extends BaseAssetFactory
         parent::__construct($root, $debug);
     }
 
-
     /**
      * @param string $input
      * @return string
