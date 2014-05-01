@@ -1,6 +1,6 @@
 <?php
 
-namespace Spiffy\Assetic\Loader;
+namespace Spiffy\Assetic\Assetic;
 
 use Assetic\Factory\Loader\FormulaLoaderInterface;
 use Assetic\Factory\Resource\ResourceInterface;
@@ -52,11 +52,12 @@ class DirectoryFormulaLoader implements FormulaLoaderInterface
         foreach ($finder as $file) {
             /** @var \Symfony\Component\Finder\SplFileinfo $file */
             $name = $this->factory->generateAssetName($file->getRealPath(), $this->filters);
+            $replaceRegex = sprintf('@^.*%s\/?@', $path);
             $result[$name] = [
                 [$file->getRealPath()],
                 $this->filters,
                 [
-                    'output' => $this->output . '/' . str_replace($path . '/', '', $file->getRealpath())
+                    'output' => $this->output . '/' . preg_replace($replaceRegex, '', $file->getRealpath())
                 ]
             ];
         }

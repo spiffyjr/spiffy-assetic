@@ -31,6 +31,10 @@ class AsseticServiceFactory implements FactoryInterface
     protected function injectPlugins(ServiceLocatorInterface $services, AsseticService $service, array $plugins)
     {
         foreach ($plugins as $plugin) {
+            if (empty($plugin)) {
+                continue;
+            }
+
             if (is_string($plugin)) {
                 $plugin = $services->has($plugin) ? $services->get($plugin) : new $plugin();
             }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Spiffy\Assetic\Loader;
+namespace Spiffy\Assetic\Assetic;
 
 use Assetic\Factory\Resource\ResourceInterface;
 use Symfony\Component\Finder\Finder;

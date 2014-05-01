@@ -94,8 +94,8 @@ return [
             'image' => ['tag' => 'image', 'output' => 'image/*', 'single' => true],
         ],
         'plugins' => [
-            'Spiffy\Assetic\Plugin\AssetLoaderPlugin',
-            'Spiffy\Assetic\Plugin\FilterLoaderPlugin',
+            'asset_loader' => 'Spiffy\Assetic\Plugin\AssetLoaderPlugin',
+            'filter_loader' => 'Spiffy\Assetic\Plugin\FilterLoaderPlugin',
         ],
     ],
     'zfctwig' => [
