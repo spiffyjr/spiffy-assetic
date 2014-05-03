@@ -17,7 +17,9 @@
         "squizlabs/php_codesniffer": "~1.0"
     },
     "suggest": {
-        "natxet/cssmin": "Package required to use the included cssmin filter."
+        "mrclay/minify": "required to use the jsmin filter.",
+        "natxet/cssmin": "required to use the cssmin filter.",
+        "ptachoire/cssembed": "required to use the cssembed filter."
     },
     "autoload": {
         "psr-4": {

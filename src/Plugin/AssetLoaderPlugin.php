@@ -49,9 +49,9 @@ class AssetLoaderPlugin extends AbstractListenerAggregate
                 continue;
             }
 
-            $inputs = isset($asset[0]) ? $asset[0] : [];
-            $filters = isset($asset[1]) ? $asset[1] : [];
-            $options = isset($asset[2]) ? $asset[2] : [];
+            $inputs = isset($asset['inputs']) ? $asset['inputs'] : [];
+            $filters = isset($asset['filters']) ? $asset['filters'] : [];
+            $options = isset($asset['options']) ? $asset['options'] : [];
 
             $manager->set($name, $factory->createAsset($inputs, $filters, $options));
         }

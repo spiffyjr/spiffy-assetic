@@ -22,7 +22,7 @@ class FilterLoaderPlugin extends AbstractListenerAggregate
      */
     public function attach(EventManagerInterface $events)
     {
-        $events->attach(AsseticService::EVENT_LOAD, [$this, 'onLoad'], 1000);
+        $events->attach(AsseticService::EVENT_LOAD, [$this, 'onLoad'], 1500);
     }
 
     /**
