@@ -1,11 +1,9 @@
 <?php
 
-namespace Spiffy\Assetic;
+namespace Spiffy\AsseticModule;
 
 use Assetic\Asset\AssetInterface;
-use Zend\EventManager\AbstractListenerAggregate;
-use Zend\EventManager\EventManagerInterface;
-use Zend\Mvc\MvcEvent;
+use Spiffy\Event\Plugin;
 
 /**
  * The majority of this code was a port from AsseticBundle.

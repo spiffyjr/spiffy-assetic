@@ -10,6 +10,7 @@
     "require": {
         "php": ">=5.4",
         "kriswallsmith/assetic": "~1.1",
+        "spiffy/spiffy-event": "~1.0",
         "symfony/finder": "~2.2"
     },
     "require-dev": {

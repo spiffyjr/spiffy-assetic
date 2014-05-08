@@ -10,7 +10,7 @@
         </whitelist>
     </filter>
     <testsuites>
-        <testsuite name="Spiffy\Dispatch">
+        <testsuite name="Spiffy\Assetic">
             <directory>.</directory>
         </testsuite>
     </testsuites>

@@ -5,20 +5,19 @@ namespace Spiffy\Assetic\Plugin;
 use Assetic\Cache\ConfigCache;
 use Assetic\Factory\LazyAssetManager;
 use Assetic\Factory\Loader\CachedFormulaLoader;
-use Spiffy\Assetic\Assetic\AssetFactory;
 use Spiffy\Assetic\Assetic\DirectoryFormulaLoader;
 use Spiffy\Assetic\Assetic\RecursiveDirectoryResource;
 use Spiffy\Assetic\AsseticService;
-use Zend\EventManager\AbstractListenerAggregate;
-use Zend\EventManager\EventInterface;
-use Zend\EventManager\EventManagerInterface;
+use Spiffy\Event\Event;
+use Spiffy\Event\Manager;
+use Spiffy\Event\Plugin;
 
-class DirectoryLoaderPlugin extends AbstractListenerAggregate
+class DirectoryLoaderPlugin implements Plugin
 {
     /**
-     * @var AssetFactory
+     * @var AsseticService
      */
-    protected $factory;
+    protected $asseticService;
 
     /**
      * @var array
@@ -26,27 +25,25 @@ class DirectoryLoaderPlugin extends AbstractListenerAggregate
     protected $directories;
 
     /**
-     * @param \Spiffy\Assetic\Assetic\AssetFactory $factory
      * @param array $directories
      */
-    public function __construct(AssetFactory $factory, array $directories)
+    public function __construct(array $directories)
     {
         $this->directories = $directories;
-        $this->factory = $factory;
     }
 
     /**
-     * {@inheritDoc}
+     * @param Manager $events
      */
-    public function attach(EventManagerInterface $events)
+    public function plug(Manager $events)
     {
-        $events->attach(AsseticService::EVENT_LOAD, [$this, 'onLoad']);
+        $events->on(AsseticService::EVENT_LOAD, [$this, 'onLoad']);
     }
 
     /**
-     * @param EventInterface $e
+     * @param Event $e
      */
-    public function onLoad(EventInterface $e)
+    public function onLoad(Event $e)
     {
         /** @var \Spiffy\Assetic\AsseticService $service */
         $service = $e->getTarget();
@@ -71,7 +68,7 @@ class DirectoryLoaderPlugin extends AbstractListenerAggregate
                     continue;
                 }
                 $am->addResource(new RecursiveDirectoryResource(
-                    $this->factory->convertModuleInput($directory[0]),
+                    $service->resolveAlias($directory[0]),
                     isset($directory[1]) ? $directory[1] : '*'
                 ), $formulaName);
             }

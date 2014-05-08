@@ -4,8 +4,8 @@ namespace Spiffy\Assetic\Twig;
 
 use Assetic\Extension\Twig\AsseticExtension as BaseAsseticExtension;
 use Assetic\Extension\Twig\AsseticTokenParser;
+use Assetic\Factory\AssetFactory;
 use Assetic\ValueSupplierInterface;
-use Spiffy\Assetic\Assetic\AssetFactory;
 
 class AsseticExtension extends BaseAsseticExtension
 {

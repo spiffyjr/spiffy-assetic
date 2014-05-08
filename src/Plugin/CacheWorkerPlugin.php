@@ -4,24 +4,25 @@ namespace Spiffy\Assetic\Plugin;
 
 use Assetic\Factory\Worker\CacheBustingWorker;
 use Spiffy\Assetic\AsseticService;
-use Zend\EventManager\AbstractListenerAggregate;
-use Zend\EventManager\EventInterface;
-use Zend\EventManager\EventManagerInterface;
+use Spiffy\Event\Event;
+use Spiffy\Event\Manager;
+use Spiffy\Event\Plugin;
 
-class CacheWorkerPlugin extends AbstractListenerAggregate
+class CacheWorkerPlugin implements Plugin
 {
     /**
-     * {@inheritDoc}
+     * @param Manager $events
+     * @return void
      */
-    public function attach(EventManagerInterface $events)
+    public function plug(Manager $events)
     {
-        $events->attach(AsseticService::EVENT_LOAD, [$this, 'onLoad'], 1000);
+        $events->on(AsseticService::EVENT_LOAD, [$this, 'onLoad']);
     }
 
     /**
-     * @param EventInterface $e
+     * @param Event $e
      */
-    public function onLoad(EventInterface $e)
+    public function onLoad(Event $e)
     {
         /** @var \Spiffy\Assetic\AsseticService $service */
         $service = $e->getTarget();
