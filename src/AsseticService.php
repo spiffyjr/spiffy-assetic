@@ -9,6 +9,7 @@ use Assetic\Factory\AssetFactory;
 use Assetic\Factory\LazyAssetManager;
 use Assetic\FilterManager;
 use Assetic\Util\VarUtils;
+use Spiffy\Event\Event;
 use Spiffy\Event\EventsAwareTrait;
 
 class AsseticService
@@ -98,12 +99,17 @@ class AsseticService
 
     /**
      * @param string $input
+     * @param array $params
      * @return string
      */
-    public function resolveAlias($input)
+    public function resolveAlias($input, array $params = [])
     {
-        $response = $this->events()->fire(self::EVENT_RESOLVE_ALIAS, $input);
-        return $response->count() ? $response->top() : $input;
+        $params['assetic_service'] = $this;
+
+        $event = new Event(self::EVENT_RESOLVE_ALIAS, $input, $params);
+        $this->events()->fire($event);
+
+        return $event->getTarget();
     }
 
     /**
