@@ -92,7 +92,7 @@ class PhpCssAliasEmbedFilter extends PhpCssEmbedFilter
             }
             $i++;
         }
-        $j = count( $from ) - 1;
+        $j = count($from) - 1;
         // add '..' until the path is the same
         while ($i <= $j) {
             if (!empty($from[$j])) {
