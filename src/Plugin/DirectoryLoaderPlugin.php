@@ -3,7 +3,6 @@
 namespace Spiffy\Assetic\Plugin;
 
 use Assetic\Cache\ConfigCache;
-use Assetic\Factory\LazyAssetManager;
 use Assetic\Factory\Loader\CachedFormulaLoader;
 use Spiffy\Assetic\Assetic\DirectoryFormulaLoader;
 use Spiffy\Assetic\Assetic\RecursiveDirectoryResource;
