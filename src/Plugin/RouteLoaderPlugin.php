@@ -3,14 +3,13 @@
 namespace Spiffy\AsseticModule;
 
 use Assetic\Asset\AssetInterface;
-use Spiffy\Event\Plugin;
 
 /**
  * The majority of this code was a port from AsseticBundle.
  * @see https://github.com/symfony/AsseticBundle/blob/master/Routing/AsseticLoader.php
  * @codeCoverageIgnore
  */
-class RouteLoader extends AbstractListenerAggregate
+class RouteLoaderPlugin extends AbstractListenerAggregate
 {
     /**
      * {@inheritDoc}
@@ -70,7 +69,7 @@ class RouteLoader extends AbstractListenerAggregate
      * @param Router $router
      * @param AssetInterface $asset
      * @param $name
-     * @param null $pos
+     * @param integer $pos
      */
     protected function loadRouteForAsset(Router $router, AssetInterface $asset, $name, $pos = null)
     {
