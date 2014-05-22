@@ -21,6 +21,11 @@ class TwigLoaderPlugin implements Plugin
     protected $cacheDir;
 
     /**
+     * @var \Twig_Environment
+     */
+    protected $twig;
+
+    /**
      * @param \Twig_Environment $twig
      * @param string $cacheDir
      */
