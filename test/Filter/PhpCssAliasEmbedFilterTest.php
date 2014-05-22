@@ -53,6 +53,11 @@ EXPECTED;
      */
     public function testFilterDumpSkipsIfResolveDoesNotModifyAlias()
     {
+        $this->setExpectedException(
+            'PHPUnit_Framework_Error',
+            'mime_content_type(' . __DIR__ . '/../asset/css/@asset/image/embed.png): ' .
+            'failed to open stream: No such file or directory');
+
         $asset = new FileAsset(__DIR__ . '/../asset/css/embed.css');
         $asset->load();
 
