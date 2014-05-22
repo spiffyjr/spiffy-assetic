@@ -40,7 +40,11 @@ class PhpCssAliasEmbedFilter extends PhpCssEmbedFilter
     {
         $this->resolve($asset);
         try {
-            parent::filterLoad($asset);
+            /*
+             * This suppression is ugly but necessary because the library does not verify
+             * file exists before using mime_content_type.
+             */
+            @parent::filterLoad($asset);
         } catch (\InvalidArgumentException $e) {
         }
     }
