@@ -42,6 +42,7 @@ class DirectoryFormulaLoaderTest extends \PHPUnit_Framework_TestCase
         $resource = new RecursiveDirectoryResource($dir, '/bootstrap.min.(?:js|css)$/');
 
         $result = $l->load($resource);
+        sort($result);
         $keys = array_keys($result);
         sort($result[$keys[0]]);
         sort($result[$keys[1]]);
@@ -72,6 +73,7 @@ class DirectoryFormulaLoaderTest extends \PHPUnit_Framework_TestCase
         $resource = new RecursiveDirectoryResource('asset', '/bootstrap.min.(?:js|css)$/');
 
         $result = $l->load($resource);
+        sort($result);
         $keys = array_keys($result);
         sort($result[$keys[0]]);
         sort($result[$keys[1]]);
