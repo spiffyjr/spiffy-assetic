@@ -42,20 +42,21 @@ class DirectoryFormulaLoaderTest extends \PHPUnit_Framework_TestCase
         $resource = new RecursiveDirectoryResource($dir, '/bootstrap.min.(?:js|css)$/');
 
         $result = $l->load($resource);
+        $keys = array_keys($result);
+        sort($result[$keys[0]]);
+        sort($result[$keys[1]]);
 
         $this->assertSame([
-            0 => [$dir . DIRECTORY_SEPARATOR . 'css' . DIRECTORY_SEPARATOR . 'bootstrap.min.css'],
-            1 => [],
+            0 => [],
+            1 => [$dir . DIRECTORY_SEPARATOR . 'css' . DIRECTORY_SEPARATOR . 'bootstrap.min.css'],
             2 => ['output' => $this->tmp . DIRECTORY_SEPARATOR . 'css' . DIRECTORY_SEPARATOR . 'bootstrap.min.css']
-        ], current($result));
-
-        next($result);
+        ], $result[$keys[0]]);
 
         $this->assertSame([
-            0 => [$dir . DIRECTORY_SEPARATOR . 'js' . DIRECTORY_SEPARATOR . 'bootstrap.min.js'],
-            1 => [],
+            0 => [],
+            1 => [$dir . DIRECTORY_SEPARATOR . 'js' . DIRECTORY_SEPARATOR . 'bootstrap.min.js'],
             2 => ['output' => $this->tmp . DIRECTORY_SEPARATOR . 'js' . DIRECTORY_SEPARATOR . 'bootstrap.min.js']
-        ], current($result));
+        ], $result[$keys[1]]);
     }
 
     /**
@@ -71,20 +72,23 @@ class DirectoryFormulaLoaderTest extends \PHPUnit_Framework_TestCase
         $resource = new RecursiveDirectoryResource('asset', '/bootstrap.min.(?:js|css)$/');
 
         $result = $l->load($resource);
+        $keys = array_keys($result);
+        sort($result[$keys[0]]);
+        sort($result[$keys[1]]);
 
         $this->assertSame([
-            0 => [$dir . DIRECTORY_SEPARATOR . 'css' . DIRECTORY_SEPARATOR . 'bootstrap.min.css'],
-            1 => [],
+            0 => [],
+            1 => [$dir . DIRECTORY_SEPARATOR . 'css' . DIRECTORY_SEPARATOR . 'bootstrap.min.css'],
             2 => ['output' => $this->tmp . DIRECTORY_SEPARATOR . 'css' . DIRECTORY_SEPARATOR . 'bootstrap.min.css']
-        ], current($result));
+        ], $result[$keys[0]]);
 
         next($result);
 
         $this->assertSame([
-            0 => [$dir . DIRECTORY_SEPARATOR . 'js' . DIRECTORY_SEPARATOR . 'bootstrap.min.js'],
-            1 => [],
+            0 => [],
+            1 => [$dir . DIRECTORY_SEPARATOR . 'js' . DIRECTORY_SEPARATOR . 'bootstrap.min.js'],
             2 => ['output' => $this->tmp . DIRECTORY_SEPARATOR . 'js' . DIRECTORY_SEPARATOR . 'bootstrap.min.js']
-        ], current($result));
+        ], $result[$keys[1]]);
 
         chdir($curdir);
     }
