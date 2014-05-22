@@ -50,11 +50,20 @@ EXPECTED;
 
     /**
      * @covers ::__construct, ::filterDump
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Cannot read file
      */
     public function testFilterDumpSkipsIfResolveDoesNotModifyAlias()
     {
+        if (function_exists('mime_content_type')) {
+            $this->setExpectedException(
+                'PHPUnit_Framework_Error',
+                'mime_content_type('
+            );
+        } else {
+            $this->setExpectedException(
+                'InvalidArgumentException',
+                'Cannot read file'
+            );
+        }
         $asset = new FileAsset(__DIR__ . '/../asset/css/embed.css');
         $asset->load();
 
