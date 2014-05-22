@@ -15,9 +15,9 @@ use Spiffy\Event\Plugin;
 class DirectoryLoaderPlugin implements Plugin
 {
     /**
-     * @var AsseticService
+     * @var string
      */
-    protected $asseticService;
+    protected $cacheDir;
 
     /**
      * @var array
@@ -26,10 +26,12 @@ class DirectoryLoaderPlugin implements Plugin
 
     /**
      * @param array $directories
+     * @param string $cacheDir
      */
-    public function __construct(array $directories)
+    public function __construct(array $directories, $cacheDir)
     {
         $this->directories = $directories;
+        $this->cacheDir = $cacheDir;
     }
 
     /**
@@ -49,15 +51,15 @@ class DirectoryLoaderPlugin implements Plugin
         $service = $e->getTarget();
         $am = $service->getAssetManager();
 
-        if (!$am instanceof LazyAssetManager) {
-            return;
-        }
-
         foreach ($this->directories as $outputName => $spec) {
+            if (!is_array($spec)) {
+                continue;
+            }
+
             $formulaName = 'directories_ ' . $outputName;
             $formulaLoader = new CachedFormulaLoader(
                 new DirectoryFormulaLoader($service->getAssetFactory(), $outputName),
-                new ConfigCache('data/cache/assetic'),
+                new ConfigCache($this->cacheDir),
                 $am->isDebug()
             );
 

@@ -26,9 +26,9 @@ class RecursiveDirectoryResource implements ResourceInterface
      * @param string $path
      * @param string $pattern
      */
-    public function __construct($path, $pattern = '.*')
+    public function __construct($path, $pattern = '*')
     {
-        $this->path = $path;
+        $this->path = realpath($path);
         $this->pattern = $pattern;
     }
 
@@ -41,7 +41,9 @@ class RecursiveDirectoryResource implements ResourceInterface
     }
 
     /**
-     * {@inheritDoc}
+     * TODO: implement me. Iterate through files found in finder and check if modified?
+     * @param int $timestamp
+     * @return false
      */
     public function isFresh($timestamp)
     {

@@ -27,6 +27,7 @@ class PhpCssAliasEmbedFilter extends PhpCssEmbedFilter
 
     /**
      * @param AssetInterface $asset
+     * @codeCoverageIgnore
      */
     public function filterLoad(AssetInterface $asset)
     {
@@ -37,18 +38,17 @@ class PhpCssAliasEmbedFilter extends PhpCssEmbedFilter
      */
     public function filterDump(AssetInterface $asset)
     {
-        $this->filter($asset);
+        $this->resolve($asset);
         try {
             parent::filterLoad($asset);
         } catch (\InvalidArgumentException $e) {
-
         }
     }
 
     /**
      * @param AssetInterface $asset
      */
-    protected function filter(AssetInterface $asset)
+    protected function resolve(AssetInterface $asset)
     {
         $content = $asset->getContent();
 
@@ -62,41 +62,49 @@ class PhpCssAliasEmbedFilter extends PhpCssEmbedFilter
                 return $match[0];
             }
 
-            $relativePath = $this->findRelativePath($asset->getSourceRoot(), $aliasPath);
-
-            return $match[1] . $relativePath;
+            return $match[1] . $this->findRelativePath($asset->getSourceRoot(), $aliasPath);
         };
 
         // aliases can be marked with @ or $
+        // e.g., @MyModule, @MyPackage, $MyVar
+        // the result of the match is handled by resolve alias plugins
         $asset->setContent(preg_replace_callback('/(url\(\s*[\'"]?)([@$][^\'")]+)/', $replace, $content));
     }
 
     /**
+     * @see http://stackoverflow.com/questions/2637945/getting-relative-path-from-absolute-path-in-php
+     *
      * @param string $fromPath
      * @param string $toPath
      * @return string
      */
     protected function findRelativePath($fromPath, $toPath)
     {
-        $from = explode(DIRECTORY_SEPARATOR, $fromPath);
-        $to = explode(DIRECTORY_SEPARATOR, $toPath);
+        $from = explode(DIRECTORY_SEPARATOR, realpath($fromPath));
+        $to = explode(DIRECTORY_SEPARATOR, realpath($toPath));
         $relpath = '';
 
         $i = 0;
         // find how far the path is the same
-        while ( isset($from[$i]) && isset($to[$i]) ) {
-            if ( $from[$i] != $to[$i] ) break;
+        while (isset($from[$i]) && isset($to[$i])) {
+            if ($from[$i] != $to[$i]) {
+                break;
+            }
             $i++;
         }
         $j = count( $from ) - 1;
         // add '..' until the path is the same
-        while ( $i <= $j ) {
-            if ( !empty($from[$j]) ) $relpath .= '..'.DIRECTORY_SEPARATOR;
+        while ($i <= $j) {
+            if (!empty($from[$j])) {
+                $relpath .= '..'.DIRECTORY_SEPARATOR;
+            }
             $j--;
         }
         // go to folder from where it starts differing
-        while ( isset($to[$i]) ) {
-            if ( !empty($to[$i]) ) $relpath .= $to[$i].DIRECTORY_SEPARATOR;
+        while (isset($to[$i])) {
+            if (!empty($to[$i])) {
+                $relpath .= $to[$i].DIRECTORY_SEPARATOR;
+            }
             $i++;
         }
 

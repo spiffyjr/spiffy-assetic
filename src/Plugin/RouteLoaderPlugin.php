@@ -8,6 +8,7 @@ use Spiffy\Event\Plugin;
 /**
  * The majority of this code was a port from AsseticBundle.
  * @see https://github.com/symfony/AsseticBundle/blob/master/Routing/AsseticLoader.php
+ * @codeCoverageIgnore
  */
 class RouteLoader extends AbstractListenerAggregate
 {
