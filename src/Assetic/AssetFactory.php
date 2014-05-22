@@ -8,6 +8,11 @@ use Spiffy\Assetic\AsseticService;
 class AssetFactory extends BaseAssetFactory
 {
     /**
+     * @var AsseticService
+     */
+    protected $asseticService;
+
+    /**
      * @param AsseticService $asseticService
      */
     public function __construct(AsseticService $asseticService)
