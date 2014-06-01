@@ -72,6 +72,9 @@ class FilterLoaderPlugin implements Plugin
      */
     protected function loadFilter($filter)
     {
+        if ($filter instanceof FilterInterface) {
+            return $filter;
+        }
         return new $filter();
     }
 }
