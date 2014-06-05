@@ -54,10 +54,7 @@ EXPECTED;
     public function testFilterDumpSkipsIfResolveDoesNotModifyAlias()
     {
         if (function_exists('mime_content_type')) {
-            $this->setExpectedException(
-                'PHPUnit_Framework_Error',
-                'mime_content_type('
-            );
+            $this->setExpectedException('PHPUnit_Framework_Error');
         } else {
             $this->setExpectedException(
                 'InvalidArgumentException',
