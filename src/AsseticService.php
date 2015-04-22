@@ -4,10 +4,11 @@ namespace Spiffy\Assetic;
 
 use Assetic\Asset\AssetCollectionInterface;
 use Assetic\Asset\AssetInterface;
+use Assetic\AssetWriter;
+use Assetic\Factory\AssetFactory;
 use Assetic\Factory\LazyAssetManager;
 use Assetic\FilterManager;
 use Assetic\Util\VarUtils;
-use Spiffy\Assetic\Assetic\AssetFactory;
 use Spiffy\Event\Event;
 use Spiffy\Event\EventsAwareTrait;
 
@@ -26,6 +27,11 @@ class AsseticService
      * @var AssetFactory
      */
     protected $assetFactory;
+
+    /**
+     * @var AssetWriter
+     */
+    protected $assetWriter;
 
     /**
      * @var bool
@@ -77,8 +83,18 @@ class AsseticService
      */
     public function clear()
     {
-        $this->getAssetFactory()->getAssetManager()->clear();
+        $this->assetFactory->getAssetManager()->clear();
         $this->loaded = false;
+    }
+
+    /**
+     * Write assets.
+     */
+    public function write()
+    {
+        $this->load();
+        $writer = $this->getAssetWriter();
+        $writer->writeManagerAssets($this->getAssetManager());
     }
 
     /**
@@ -101,16 +117,14 @@ class AsseticService
      * @param array $variables
      * @param bool $verbose
      */
-    public function writeAssets($outputDir, array $variables = [], $verbose = false)
+    public function dumpAssets($outputDir, array $variables = [], $verbose = false)
     {
         foreach ($this->getAssetManager()->getNames() as $name) {
-            $this->writeAsset($name, $outputDir, $variables, $verbose);
+            $this->dumpAsset($name, $outputDir, $variables, $verbose);
         }
     }
 
     /**
-     * @todo Figure out how to test this beast?
-     * @codeCoverageIgnore
      * @param string $outputDir
      * @param bool $force
      * @param int $period
@@ -134,7 +148,7 @@ class AsseticService
             try {
                 foreach ($this->getAssetManager()->getNames() as $name) {
                     if ($this->checkAsset($name, $variables, $previously)) {
-                        $this->writeAsset($name, $outputDir, $variables, $verbose);
+                        $this->dumpAsset($name, $outputDir, $variables, $verbose);
                     }
                 }
 
@@ -160,7 +174,7 @@ class AsseticService
      * @param array $previously
      * @return bool
      */
-    public function checkAsset($name, array $variables = [], array &$previously = [])
+    public function checkAsset($name, array $variables = [], array &$previously)
     {
         $am = $this->getAssetManager();
 
@@ -184,7 +198,7 @@ class AsseticService
             $changed = true;
         }
 
-        $previously[$name] = ['mtime' => $mtime, 'formula' => $formula];
+        $previously[$name] = array('mtime' => $mtime, 'formula' => $formula);
 
         return $changed;
     }
@@ -195,7 +209,7 @@ class AsseticService
      * @param array $variables
      * @param bool $verbose
      */
-    public function writeAsset($name, $outputDir, array $variables = [], $verbose = false)
+    public function dumpAsset($name, $outputDir, array $variables = [], $verbose = false)
     {
         $am = $this->getAssetManager();
         $asset = $am->get($name);
@@ -210,6 +224,14 @@ class AsseticService
                 $this->doDump($leaf, $outputDir, $variables, $verbose);
             }
         }
+    }
+
+    /**
+     * @return AssetWriter
+     */
+    public function getAssetWriter()
+    {
+        return $this->assetWriter;
     }
 
     /**
@@ -264,7 +286,7 @@ class AsseticService
      * @param bool $verbose
      * @throws \RuntimeException
      */
-    private function doDump(AssetInterface $asset, $outputDir, array $variables = [], $verbose = false)
+    protected function doDump(AssetInterface $asset, $outputDir, array $variables = [], $verbose = false)
     {
         $combinations = VarUtils::getCombinations(
             $asset->getVars(),
@@ -279,15 +301,11 @@ class AsseticService
             $target = str_replace('_controller/', '', $target);
             $target = VarUtils::resolve($target, $asset->getVars(), $asset->getValues());
 
-            $dir = dirname($target);
-            if (!is_dir($dir)) {
+            if (!is_dir($dir = dirname($target))) {
                 $this->events()->fire(self::EVENT_DUMP_DIR, $dir);
 
-                if (false === mkdir($dir, 0777, true)) {
-                    throw new \RuntimeException(sprintf(
-                        'Unable to create directory %s',
-                        $dir
-                    ));
+                if (false === @mkdir($dir, 0777, true)) {
+                    throw new \RuntimeException('Unable to create directory '.$dir);
                 }
             }
 
@@ -304,10 +322,7 @@ class AsseticService
             }
 
             if (false === file_put_contents($target, $asset->dump())) {
-                throw new \RuntimeException(sprintf(
-                    'Unable to write file %s',
-                    $target
-                ));
+                throw new \RuntimeException('Unable to write file '.$target);
             }
         }
     }
