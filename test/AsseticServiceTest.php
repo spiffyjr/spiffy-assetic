@@ -57,7 +57,8 @@ namespace Spiffy\Assetic
         protected $service;
 
         /**
-         * @covers ::__construct, ::isLoaded
+         * @covers ::__construct
+         * @covers ::isLoaded
          */
         public function testIsLoaded()
         {
@@ -72,23 +73,25 @@ namespace Spiffy\Assetic
         }
 
         /**
-         * @covers ::writeAssets, ::doDump
+         * @covers ::dumpAssets
+         * @covers ::doDump
          */
-        public function testWriteAssets()
+        public function testDumpAssets()
         {
             $s = $this->service;
-            $s->writeAssets($this->outputDir);
+            $s->dumpAssets($this->outputDir);
 
             $this->assertFileExists($this->outputDir . '/template.twig');
         }
 
         /**
-         * @covers ::writeAsset, ::doDump
+         * @covers ::dumpAsset
+         * @covers ::doDump
          */
-        public function testWriteAsset()
+        public function testDumpAsset()
         {
             $s = $this->service;
-            $s->writeAsset('foo', $this->outputDir);
+            $s->dumpAsset('foo', $this->outputDir);
 
             $this->assertFileExists($this->outputDir . '/template.twig');
         }
@@ -102,8 +105,8 @@ namespace Spiffy\Assetic
             $af = $s->getAssetFactory();
             $af->setDebug(true);
 
-            $s->writeAsset('foo', $this->outputDir);
-            $s->writeAsset('bar', $this->outputDir);
+            $s->dumpAsset('foo', $this->outputDir);
+            $s->dumpAsset('bar', $this->outputDir);
 
             $this->assertFileExists($this->outputDir . '/template.twig');
             $this->assertFileExists($this->outputDir . '/collection.css');
@@ -120,8 +123,8 @@ namespace Spiffy\Assetic
             $af = $s->getAssetFactory();
             $af->setDebug(true);
 
-            $s->writeAsset('foo', $this->outputDir, [], true);
-            $s->writeAsset('bar', $this->outputDir, [], true);
+            $s->dumpAsset('foo', $this->outputDir, [], true);
+            $s->dumpAsset('bar', $this->outputDir, [], true);
 
             $this->assertFileExists($this->outputDir . '/template.twig');
             $this->assertFileExists($this->outputDir . '/collection.css');
@@ -146,8 +149,8 @@ namespace Spiffy\Assetic
                 $assetCount++;
             });
 
-            $s->writeAsset('foo', $this->outputDir, [], true);
-            $s->writeAsset('bar', $this->outputDir, [], true);
+            $s->dumpAsset('foo', $this->outputDir, [], true);
+            $s->dumpAsset('bar', $this->outputDir, [], true);
 
             $this->assertSame(1, $dirCount);
             $this->assertSame(3, $assetCount);
@@ -169,7 +172,7 @@ namespace Spiffy\Assetic
             $asset->setTargetPath('somefile.txt');
 
             $am->set('baz', $asset);
-            $s->writeAsset('baz', '');
+            $s->dumpAsset('baz', '');
         }
 
         /**
@@ -188,7 +191,7 @@ namespace Spiffy\Assetic
             $asset->setTargetPath('foo/somefile.txt');
 
             $am->set('baz', $asset);
-            $s->writeAsset('baz', '');
+            $s->dumpAsset('baz', '');
         }
 
         /**
