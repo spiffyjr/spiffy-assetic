@@ -174,7 +174,7 @@ class AsseticService
      * @param array $previously
      * @return bool
      */
-    public function checkAsset($name, array $variables = [], array &$previously)
+    public function checkAsset($name, array $variables = [], array &$previously = [])
     {
         $am = $this->getAssetManager();
 
