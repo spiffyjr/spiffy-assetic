@@ -21,7 +21,8 @@ class DirectoryFormulaLoaderTest extends \PHPUnit_Framework_TestCase
     protected $tmp;
 
     /**
-     * @covers ::__construct, ::load
+     * @covers ::__construct
+     * @covers ::load
      * @expectedException \Spiffy\Assetic\Assetic\Exception\InvalidResourceException
      * @expectedExceptionMessage RecursiveDirectoryFormulaLoader expects RecursiveDirectoryResources
      */
@@ -32,7 +33,9 @@ class DirectoryFormulaLoaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::__construct, ::load, ::convertSeparators
+     * @covers ::__construct
+     * @covers ::load
+     * @covers ::convertSeparators
      */
     public function testLoadWithAbsolutePaths()
     {
@@ -61,7 +64,9 @@ class DirectoryFormulaLoaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::__construct, ::load, ::convertSeparators
+     * @covers ::__construct
+     * @covers ::load
+     * @covers ::convertSeparators
      */
     public function testLoadWithRelativePaths()
     {

@@ -22,7 +22,8 @@ class PhpCssAliasEmbedFilterTest extends \PHPUnit_Framework_TestCase
     protected $service;
 
     /**
-     * @covers ::__construct, ::filterDump
+     * @covers ::__construct
+     * @covers ::filterDump
      */
     public function testResolveAliasModifiesContent()
     {
@@ -49,7 +50,8 @@ EXPECTED;
     }
 
     /**
-     * @covers ::__construct, ::filterDump
+     * @covers ::__construct
+     * @covers ::filterDump
      */
     public function testFilterDumpSkipsIfResolveDoesNotModifyAlias()
     {

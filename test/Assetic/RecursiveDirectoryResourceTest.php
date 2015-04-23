@@ -14,7 +14,8 @@ class RecursiveDirectoryResourceTest extends \PHPUnit_Framework_TestCase
     protected $resource;
 
     /**
-     * @covers ::__construct, ::getPath
+     * @covers ::__construct
+     * @covers ::getPath
      */
     public function testGetPath()
     {
@@ -23,7 +24,8 @@ class RecursiveDirectoryResourceTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::__construct, ::__toString
+     * @covers ::__construct
+     * @covers ::__toString
      */
     public function testToString()
     {
@@ -32,7 +34,8 @@ class RecursiveDirectoryResourceTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::__construct, getContent
+     * @covers ::__construct
+     * @covers ::getContent
      */
     public function testGetContent()
     {
@@ -49,7 +52,8 @@ class RecursiveDirectoryResourceTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::__construct, ::isFresh
+     * @covers ::__construct
+     * @covers ::isFresh
      */
     public function testIsFresh()
     {

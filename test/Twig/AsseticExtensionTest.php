@@ -9,7 +9,8 @@ use Assetic\Factory\AssetFactory;
 class AsseticExtensionTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers ::__construct, ::getTokenParsers
+     * @covers ::__construct
+     * @covers ::getTokenParsers
      */
     public function testGetTokenParsers()
     {

@@ -97,7 +97,8 @@ namespace Spiffy\Assetic
         }
 
         /**
-         * @covers ::writeAsset, ::doDump
+         * @covers ::writeAsset
+         * @covers ::doDump
          */
         public function testWriteAssetWithDebugMode()
         {
@@ -115,7 +116,8 @@ namespace Spiffy\Assetic
         }
 
         /**
-         * @covers ::writeAsset, ::doDump
+         * @covers ::writeAsset
+         * @covers ::doDump
          */
         public function testWriteAssetWithVerbose()
         {

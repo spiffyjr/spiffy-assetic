@@ -12,7 +12,8 @@ use Spiffy\Assetic\AsseticService;
 class AssetFactoryTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers ::__construct, ::parseInput
+     * @covers ::__construct
+     * @covers ::parseInput
      */
     public function testParseInputIsProxiedThroughResolveAlias()
     {

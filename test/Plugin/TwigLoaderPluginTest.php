@@ -12,7 +12,8 @@ use Spiffy\Event\EventManager;
 class TwigLoaderPluginTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers ::__construct, ::plug
+     * @covers ::__construct
+     * @covers ::plug
      */
     public function testPlug()
     {
@@ -25,7 +26,8 @@ class TwigLoaderPluginTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::__construct, ::onLoad
+     * @covers ::__construct
+     * @covers ::onLoad
      */
     public function testOnLoadWithSimpleLoader()
     {
@@ -46,7 +48,8 @@ class TwigLoaderPluginTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::__construct, ::onLoad
+     * @covers ::__construct
+     * @covers ::onLoad
      */
     public function testOnLoadWithChainedLoader()
     {

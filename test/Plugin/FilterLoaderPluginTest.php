@@ -12,7 +12,8 @@ use Spiffy\Event\EventManager;
 class FilterLoaderPluginTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers ::__construct, ::plug
+     * @covers ::__construct
+     * @covers ::plug
      */
     public function testPlug()
     {
@@ -25,7 +26,9 @@ class FilterLoaderPluginTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::__construct, ::onLoad, ::isLoaded
+     * @covers ::__construct
+     * @covers ::onLoad
+     * @covers ::isLoaded
      */
     public function testOnLoadIsLoadedOnce()
     {
@@ -45,7 +48,8 @@ class FilterLoaderPluginTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::__construct, ::onLoad
+     * @covers ::__construct
+     * @covers ::onLoad
      */
     public function testOnLoad()
     {
