@@ -174,7 +174,7 @@ class AsseticService
      * @param array $previously
      * @return bool
      */
-    public function checkAsset($name, array $variables = [], array &$previously)
+    public function checkAsset($name, array $variables = [], array &$previously = [])
     {
         $am = $this->getAssetManager();
 
@@ -252,7 +252,7 @@ class AsseticService
      */
     public function getAssetManager()
     {
-        return $this->assetFactory->getAssetManager();
+        return $this->getAssetFactory()->getAssetManager();
     }
 
     /**
@@ -260,7 +260,7 @@ class AsseticService
      */
     public function getFilterManager()
     {
-        return $this->assetFactory->getFilterManager();
+        return $this->getAssetFactory()->getFilterManager();
     }
 
     /**

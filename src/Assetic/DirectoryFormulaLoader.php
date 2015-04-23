@@ -2,8 +2,10 @@
 
 namespace Spiffy\Assetic\Assetic;
 
+use Assetic\Factory\AssetFactory as BaseAssetFactory;
 use Assetic\Factory\Loader\FormulaLoaderInterface;
 use Assetic\Factory\Resource\ResourceInterface;
+use Spiffy\Assetic\Assetic\Exception\InvalidResourceException;
 use Symfony\Component\Finder\Finder;
 
 class DirectoryFormulaLoader implements FormulaLoaderInterface
@@ -24,11 +26,11 @@ class DirectoryFormulaLoader implements FormulaLoaderInterface
     protected $output;
 
     /**
-     * @param AssetFactory $factory
+     * @param BaseAssetFactory $factory
      * @param string $output
      * @param array $filters
      */
-    public function __construct(AssetFactory $factory, $output, array $filters = [])
+    public function __construct(BaseAssetFactory $factory, $output, array $filters = [])
     {
         $this->factory = $factory;
         $this->output = $output;
@@ -41,26 +43,35 @@ class DirectoryFormulaLoader implements FormulaLoaderInterface
     public function load(ResourceInterface $resource)
     {
         if (!$resource instanceof RecursiveDirectoryResource) {
-            throw new \RuntimeException('RecursiveDirectoryFormulaLoader only works with RecursiveDirectoryResources');
+            throw new InvalidResourceException(
+                'RecursiveDirectoryFormulaLoader expects RecursiveDirectoryResources'
+            );
         }
 
         $finder = $resource->getContent();
-        $path = $resource->getPath();
         $result = [];
 
         foreach ($finder as $file) {
             /** @var \Symfony\Component\Finder\SplFileinfo $file */
             $name = $this->factory->generateAssetName($file->getRealPath(), $this->filters);
-            $replaceRegex = sprintf('@^.*%s\/?@', $path);
+            $output = $this->output . str_replace($resource->getPath(), '', $file->getRealpath());
+
             $result[$name] = [
                 [$file->getRealPath()],
                 $this->filters,
-                [
-                    'output' => $this->output . '/' . preg_replace($replaceRegex, '', $file->getRealpath())
-                ]
+                ['output' => $this->convertSeparators($output)]
             ];
         }
 
         return $result;
+    }
+
+    /**
+     * @param string $input
+     * @return string
+     */
+    protected function convertSeparators($input)
+    {
+        return preg_replace('@[\\/]@', DIRECTORY_SEPARATOR, $input);
     }
 }

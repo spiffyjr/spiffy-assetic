@@ -22,7 +22,7 @@ class AsseticExtension extends BaseAsseticExtension
      */
     public function __construct(
         AssetFactory $factory,
-        $parsers = [],
+        $parsers,
         $functions = [],
         ValueSupplierInterface $valueSupplier = null
     ) {
