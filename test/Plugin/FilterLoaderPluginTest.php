@@ -7,7 +7,7 @@ use Spiffy\Event\Event;
 use Spiffy\Event\EventManager;
 
 /**
- * @coversDefaultClass \Spiffy\Assetic\Plugin\AbstractFilterLoaderPlugin
+ * @coversDefaultClass \Spiffy\Assetic\Plugin\FilterLoaderPlugin
  */
 class FilterLoaderPluginTest extends \PHPUnit_Framework_TestCase
 {

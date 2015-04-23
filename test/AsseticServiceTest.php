@@ -97,10 +97,10 @@ namespace Spiffy\Assetic
         }
 
         /**
-         * @covers ::writeAsset
+         * @covers ::dumpAsset
          * @covers ::doDump
          */
-        public function testWriteAssetWithDebugMode()
+        public function testDumpAssetWithDebugMode()
         {
             $s = $this->service;
             $af = $s->getAssetFactory();
@@ -116,10 +116,10 @@ namespace Spiffy\Assetic
         }
 
         /**
-         * @covers ::writeAsset
+         * @covers ::dumpAsset
          * @covers ::doDump
          */
-        public function testWriteAssetWithVerbose()
+        public function testDumpAssetWithVerbose()
         {
             $s = $this->service;
             $af = $s->getAssetFactory();

@@ -6,7 +6,7 @@ use Assetic\Factory\AssetFactory;
 use Assetic\Factory\Resource\FileResource;
 
 /**
- * @coversDefaultClass \Spiffy\Assetic\Assetic\DirectoryFormulaLoaderTest
+ * @coversDefaultClass \Spiffy\Assetic\Assetic\DirectoryFormulaLoader
  */
 class DirectoryFormulaLoaderTest extends \PHPUnit_Framework_TestCase
 {
